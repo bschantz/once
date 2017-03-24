@@ -89,3 +89,22 @@ test('once.strict with custom error message', function (t) {
     t.end()
   }
 })
+
+test('once reports name of named function', function(t) {
+  function fn() {
+    return 1
+  }
+  var foo = once(fn)
+  var g = foo()
+  t.ok(foo.called)
+  t.equal(foo.name, 'fn')
+  t.end()
+})
+
+test('once reports name of anonymous function', function(t) {
+  var foo = once(function() { return 1 })
+  var g = foo()
+  t.ok(foo.called)
+  t.equal(foo.name, '')
+  t.end()
+})
