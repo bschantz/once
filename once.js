@@ -24,6 +24,9 @@ function once (fn) {
     f.called = true
     return f.value = fn.apply(this, arguments)
   }
+  Object.defineProperty(f, 'name', {
+    get: function() { return fn.name }
+  })
   f.called = false
   return f
 }
